@@ -38,3 +38,4 @@ class App {
 }
 
 export default App;
+export { AppInfo };

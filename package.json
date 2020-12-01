@@ -2,6 +2,7 @@
     "name": "@dfgpublicidade/node-app-module",
     "version": "1.0.0",
     "license": "UNLICENSED",
+    "main": "src/index.ts",
     "scripts": {
         "check": "eslint src --ext .ts",
         "compile:clean": "npm run check && gulp install && tsc --project tsconfig.json",
@@ -12,7 +13,6 @@
     "files": [
         "src"
     ],
-    "main": "src/index.ts",
     "dependencies": {
         "@types/mongodb": "^3.5.34",
         "mongodb": "^3.6.3"

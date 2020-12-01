@@ -11,5 +11,8 @@
         "experimentalDecorators": true,
         "esModuleInterop": true,
         "noUnusedLocals": false
-    }
+    }, 
+    "files": [
+        "src/index.d.ts"
+    ]
 }

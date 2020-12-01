@@ -12,6 +12,7 @@
     "files": [
         "src"
     ],
+    "main": "src/index.ts",
     "dependencies": {
         "@types/mongodb": "^3.5.34",
         "mongodb": "^3.6.3"

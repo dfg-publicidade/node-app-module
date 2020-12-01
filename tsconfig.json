@@ -12,6 +12,15 @@
         "esModuleInterop": true,
         "noUnusedLocals": false
     }, 
+    "include": [
+        "src/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "extension": [
+        ".ts",
+    ],
     "files": [
         "src/index.d.ts"
     ]

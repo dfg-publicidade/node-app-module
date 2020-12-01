@@ -1,6 +1,5 @@
 {
     "name": "@dfgpublicidade/node-app-module",
-    "type": "module",
     "version": "1.0.0",
     "license": "UNLICENSED",
     "main": "dist/index.js",

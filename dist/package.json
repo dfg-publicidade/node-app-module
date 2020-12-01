@@ -1,14 +1,18 @@
 {
-    "name": "@dfgpublicidade/node-app",
+    "name": "@dfgpublicidade/node-app-module",
     "version": "1.0.0",
     "license": "UNLICENSED",
+    "main": "dist/index.js",
     "scripts": {
         "check": "eslint src --ext .ts",
-        "compile": "npm run check && gulp install && tsc --project tsconfig.json",
-        "recompile": "tsc --project tsconfig.json",
+        "compile:clean": "npm run check && gulp install && tsc --project tsconfig.json",
+        "compile": "tsc --project tsconfig.json",
         "test": "gulp clean && TS_NODE_FILES=true NODE_ENV=test NODE_OPTIONS=\"--max-old-space-size=4096\" nyc --reporter=html --reporter=text mocha --exit --timeout=100000",
-        "full-test": "npm run test test/**/*.spec.ts test/**/**/*.spec.ts test/**/**/**/*.spec.ts"
+        "test:all": "npm run test test/**/*.spec.ts test/**/**/*.spec.ts test/**/**/**/*.spec.ts"
     },
+    "files": [
+        "dist"
+    ],
     "dependencies": {
         "@types/mongodb": "^3.5.34",
         "mongodb": "^3.6.3"

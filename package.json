@@ -11,8 +11,7 @@
         "test:all": "npm run test test/**/*.spec.ts test/**/**/*.spec.ts test/**/**/**/*.spec.ts"
     },
     "dependencies": {
-        "@types/mongodb": "^3.5.34",
-        "mongodb": "^3.6.3"
+        "@dfgpublicidade/node-mongodb-module": "git+ssh://git@github.com/dfg-publicidade/node-mongodb-module.git"
     },
     "devDependencies": {
         "@dfgpublicidade/eslint-config": "git+ssh://git@github.com/dfg-publicidade/eslint-config.git",

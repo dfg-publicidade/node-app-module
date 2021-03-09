@@ -7,6 +7,16 @@ import App, { AppInfo } from '../src/index';
 const expect: Chai.ExpectStatic = chai.expect;
 
 describe('index.ts', (): void => {
+    it('constructor (incomplete)', async (): Promise<void> => {
+        const app: App = new App(undefined);
+
+        expect(app).to.exists;
+        expect(app.info).to.not.exists;
+        expect(app.config).to.not.exists;
+        expect(app.connectionName).to.not.exists;
+        expect(app.db).to.not.exists;
+    });
+
     it('constructor', async (): Promise<void> => {
         const appInfo: AppInfo = {
             name: 'test',

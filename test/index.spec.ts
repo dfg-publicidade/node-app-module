@@ -1,5 +1,5 @@
-import chai from 'chai';
-import { } from 'mocha';
+import chai, { Chai } from 'chai';
+import { describe, it } from 'mocha';
 
 /* Tests */
 const expect: Chai.ExpectStatic = chai.expect;

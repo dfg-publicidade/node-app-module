@@ -1,20 +1,18 @@
-import chai, { Chai } from 'chai';
+import { expect } from 'chai';
 import { describe, it } from 'mocha';
 import { MongoClient } from 'mongodb';
 import App, { AppInfo } from '../src/index';
 
 /* Tests */
-const expect: Chai.ExpectStatic = chai.expect;
-
 describe('index.ts', (): void => {
     it('constructor (incomplete)', async (): Promise<void> => {
         const app: App = new App(undefined);
 
-        expect(app).to.exists;
-        expect(app.info).to.not.exists;
-        expect(app.config).to.not.exists;
-        expect(app.connectionName).to.not.exists;
-        expect(app.db).to.not.exists;
+        expect(app).to.exist;
+        expect(app.info).to.not.exist;
+        expect(app.config).to.not.exist;
+        expect(app.connectionName).to.not.exist;
+        expect(app.db).to.not.exist;
     });
 
     it('constructor', async (): Promise<void> => {
@@ -45,21 +43,21 @@ describe('index.ts', (): void => {
             db: client.db()
         });
 
-        expect(app).to.exists;
+        expect(app).to.exist;
 
-        expect(app.info).to.exists;
-        expect(app.info.name).to.exists;
+        expect(app.info).to.exist;
+        expect(app.info.name).to.exist;
         expect(app.info.name).to.be.eq('test');
-        expect(app.info.version).to.exists;
+        expect(app.info.version).to.exist;
         expect(app.info.version).to.be.eq('v1');
 
-        expect(app.config).to.exists;
+        expect(app.config).to.exist;
         expect(app.config).to.be.deep.eq(config);
 
-        expect(app.connectionName).to.exists;
+        expect(app.connectionName).to.exist;
         expect(app.connectionName).to.be.eq('testConnection');
 
-        expect(app.db).to.exists;
+        expect(app.db).to.exist;
         expect(app.db.collection('test')).to.be.ok;
 
         await client.close();

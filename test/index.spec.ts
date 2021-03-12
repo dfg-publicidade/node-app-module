@@ -31,7 +31,7 @@ describe('index.ts', (): void => {
         }
     });
 
-    it('constructor (incomplete)', async (): Promise<void> => {
+    it('1. constructor', async (): Promise<void> => {
         const app: App = new App(undefined);
 
         expect(app).to.exist;
@@ -41,7 +41,7 @@ describe('index.ts', (): void => {
         expect(app.db).to.not.exist;
     });
 
-    it('constructor', async (): Promise<void> => {
+    it('2. constructor', async (): Promise<void> => {
         const appInfo: AppInfo = {
             name: 'test',
             version: 'v1'

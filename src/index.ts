@@ -11,13 +11,23 @@ class App {
     public constructor(params: {
         appInfo: AppInfo;
         config: any;
-        connectionName: string;
-        db: Db;
+        connectionName?: string;
+        db?: Db;
     }) {
-        this.appInfo = params?.appInfo;
-        this.appConfig = params?.config;
-        this.appConnectionName = params?.connectionName;
-        this.appDb = params?.db;
+        if (!params) {
+            throw new Error('Application parameters was not provided.');
+        }
+        if (!params.appInfo) {
+            throw new Error('Application informations was not provided.');
+        }
+        if (!params.config) {
+            throw new Error('Application configuration was not provided.');
+        }
+
+        this.appInfo = params.appInfo;
+        this.appConfig = params.config;
+        this.appConnectionName = params.connectionName;
+        this.appDb = params.db;
     }
 
     public get info(): AppInfo {

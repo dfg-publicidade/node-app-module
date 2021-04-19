@@ -8,8 +8,8 @@ declare class App {
     constructor(params: {
         appInfo: AppInfo;
         config: any;
-        connectionName: string;
-        db: Db;
+        connectionName?: string;
+        db?: Db;
     });
     get info(): AppInfo;
     get config(): any;

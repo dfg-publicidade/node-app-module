@@ -3,10 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* Module */
 class App {
     constructor(params) {
-        this.appInfo = params === null || params === void 0 ? void 0 : params.appInfo;
-        this.appConfig = params === null || params === void 0 ? void 0 : params.config;
-        this.appConnectionName = params === null || params === void 0 ? void 0 : params.connectionName;
-        this.appDb = params === null || params === void 0 ? void 0 : params.db;
+        if (!params) {
+            throw new Error('Application parameters was not provided.');
+        }
+        if (!params.appInfo) {
+            throw new Error('Application informations was not provided.');
+        }
+        if (!params.config) {
+            throw new Error('Application configuration was not provided.');
+        }
+        this.appInfo = params.appInfo;
+        this.appConfig = params.config;
+        this.appConnectionName = params.connectionName;
+        this.appDb = params.db;
     }
     get info() {
         return this.appInfo;

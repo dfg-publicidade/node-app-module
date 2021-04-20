@@ -47,6 +47,30 @@ describe('index.ts', (): void => {
     });
 
     it('3. constructor', async (): Promise<void> => {
+        expect((): void => {
+            new App({
+                appInfo: {
+                    name: undefined,
+                    version: undefined
+                },
+                config: undefined
+            });
+        }).to.throw('Application informations was not provided.');
+    });
+
+    it('4. constructor', async (): Promise<void> => {
+        expect((): void => {
+            new App({
+                appInfo: {
+                    name: 'test',
+                    version: undefined
+                },
+                config: undefined
+            });
+        }).to.throw('Application informations was not provided.');
+    });
+
+    it('5. constructor', async (): Promise<void> => {
         const appInfo: AppInfo = {
             name: 'test',
             version: 'v1'
@@ -60,7 +84,7 @@ describe('index.ts', (): void => {
         }).to.throw('Application configuration was not provided.');
     });
 
-    it('4. constructor', async (): Promise<void> => {
+    it('6. constructor', async (): Promise<void> => {
         const appInfo: AppInfo = {
             name: 'test',
             version: 'v1'
@@ -91,7 +115,7 @@ describe('index.ts', (): void => {
         expect(app.db).to.not.exist;
     });
 
-    it('5. constructor', async (): Promise<void> => {
+    it('7. constructor', async (): Promise<void> => {
         const appInfo: AppInfo = {
             name: 'test',
             version: 'v1'

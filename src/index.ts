@@ -17,7 +17,7 @@ class App {
         if (!params) {
             throw new Error('Application parameters was not provided.');
         }
-        if (!params.appInfo) {
+        if (!params.appInfo || !params.appInfo.name || !params.appInfo.version) {
             throw new Error('Application informations was not provided.');
         }
         if (!params.config) {

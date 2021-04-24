@@ -26,7 +26,7 @@ describe('index.ts', (): void => {
         try {
             client.close();
         }
-        catch (error) {
+        catch (error: any) {
             //
         }
     });

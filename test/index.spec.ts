@@ -150,4 +150,43 @@ describe('index.ts', (): void => {
         expect(app.db).to.exist;
         expect(app.db.collection('test')).to.be.ok;
     });
+
+    it('8. constructor', async (): Promise<void> => {
+        const appInfo: AppInfo = {
+            name: 'test',
+            version: 'v1',
+            taskServer: true
+        };
+
+        const config: any = {
+            test: 1,
+            test2: 2
+        };
+
+        const app: App = new App({
+            appInfo,
+            config,
+            connectionName: 'testConnection',
+            db
+        });
+
+        expect(app).to.exist;
+
+        expect(app.info).to.exist;
+        expect(app.info.name).to.exist;
+        expect(app.info.name).to.be.eq('test');
+        expect(app.info.version).to.exist;
+        expect(app.info.version).to.be.eq('v1');
+        expect(app.info.taskServer).to.exist;
+        expect(app.info.taskServer).to.be.eq(true);
+
+        expect(app.config).to.exist;
+        expect(app.config).to.be.deep.eq(config);
+
+        expect(app.connectionName).to.exist;
+        expect(app.connectionName).to.be.eq('testConnection');
+
+        expect(app.db).to.exist;
+        expect(app.db.collection('test')).to.be.ok;
+    });
 });

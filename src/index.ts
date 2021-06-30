@@ -1,18 +1,14 @@
-import { Db } from 'mongodb';
 import AppInfo from './interfaces/appInfo';
 
 /* Module */
 class App {
     private readonly appInfo: AppInfo;
     private readonly appConfig: any;
-    private readonly appConnectionName: string;
-    private readonly appDb: Db;
+    private readonly components: any = {};
 
     public constructor(params: {
         appInfo: AppInfo;
         config: any;
-        connectionName?: string;
-        db?: Db;
     }) {
         if (!params) {
             throw new Error('Application parameters was not provided.');
@@ -26,8 +22,6 @@ class App {
 
         this.appInfo = params.appInfo;
         this.appConfig = params.config;
-        this.appConnectionName = params.connectionName;
-        this.appDb = params.db;
     }
 
     public get info(): AppInfo {
@@ -38,12 +32,12 @@ class App {
         return this.appConfig;
     }
 
-    public get connectionName(): string {
-        return this.appConnectionName;
+    public add(name: string, component: any): void {
+        this.components[name] = component;
     }
 
-    public get db(): Db {
-        return this.appDb;
+    public get(name: string): any {
+        return this.components[name] ? this.components[name] : undefined;
     }
 }
 

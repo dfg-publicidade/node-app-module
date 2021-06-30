@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* Module */
 class App {
     constructor(params) {
+        this.components = {};
         if (!params) {
             throw new Error('Application parameters was not provided.');
         }
@@ -14,8 +15,6 @@ class App {
         }
         this.appInfo = params.appInfo;
         this.appConfig = params.config;
-        this.appConnectionName = params.connectionName;
-        this.appDb = params.db;
     }
     get info() {
         return this.appInfo;
@@ -23,11 +22,11 @@ class App {
     get config() {
         return this.appConfig;
     }
-    get connectionName() {
-        return this.appConnectionName;
+    add(name, component) {
+        this.components[name] = component;
     }
-    get db() {
-        return this.appDb;
+    get(name) {
+        return this.components[name] ? this.components[name] : undefined;
     }
 }
 exports.default = App;

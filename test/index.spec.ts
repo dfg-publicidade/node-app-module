@@ -110,9 +110,6 @@ describe('index.ts', (): void => {
 
         expect(app.config).to.exist;
         expect(app.config).to.be.deep.eq(config);
-
-        expect(app.connectionName).to.not.exist;
-        expect(app.db).to.not.exist;
     });
 
     it('7. constructor', async (): Promise<void> => {
@@ -128,9 +125,7 @@ describe('index.ts', (): void => {
 
         const app: App = new App({
             appInfo,
-            config,
-            connectionName: 'testConnection',
-            db
+            config
         });
 
         expect(app).to.exist;
@@ -143,12 +138,6 @@ describe('index.ts', (): void => {
 
         expect(app.config).to.exist;
         expect(app.config).to.be.deep.eq(config);
-
-        expect(app.connectionName).to.exist;
-        expect(app.connectionName).to.be.eq('testConnection');
-
-        expect(app.db).to.exist;
-        expect(app.db.collection('test')).to.be.ok;
     });
 
     it('8. constructor', async (): Promise<void> => {
@@ -165,9 +154,7 @@ describe('index.ts', (): void => {
 
         const app: App = new App({
             appInfo,
-            config,
-            connectionName: 'testConnection',
-            db
+            config
         });
 
         expect(app).to.exist;
@@ -182,11 +169,37 @@ describe('index.ts', (): void => {
 
         expect(app.config).to.exist;
         expect(app.config).to.be.deep.eq(config);
+    });
 
-        expect(app.connectionName).to.exist;
-        expect(app.connectionName).to.be.eq('testConnection');
+    it('9. constructor', async (): Promise<void> => {
+        const appInfo: AppInfo = {
+            name: 'test',
+            version: 'v1',
+            taskServer: true
+        };
 
-        expect(app.db).to.exist;
-        expect(app.db.collection('test')).to.be.ok;
+        const config: any = {
+            test: 1,
+            test2: 2
+        };
+
+        const app: App = new App({
+            appInfo,
+            config
+        });
+
+        app.add('db', db);
+        app.add('connectionName', 'mysql');
+
+        expect(app).to.exist;
+
+        expect(app.get('db')).to.exist;
+        expect(app.get('db')).to.be.deep.eq(db);
+        expect(app.get('db').collection('test')).to.be.ok;
+
+        expect(app.get('connectionName')).to.exist;
+        expect(app.get('connectionName')).to.be.eq('mysql');
+
+        expect(app.get('invalid')).to.be.undefined;
     });
 });

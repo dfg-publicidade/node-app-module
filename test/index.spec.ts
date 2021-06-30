@@ -1,36 +1,9 @@
 import { expect } from 'chai';
-import { after, before, describe, it } from 'mocha';
-import { Db, MongoClient } from 'mongodb';
+import { describe, it } from 'mocha';
 import App, { AppInfo } from '../src/index';
 
 /* Tests */
 describe('index.ts', (): void => {
-    let client: MongoClient;
-    let db: Db;
-
-    before(async (): Promise<void> => {
-        if (!process.env.MONGO_TEST_URL) {
-            throw new Error('MONGO_TEST_URL must be set');
-        }
-
-        client = await MongoClient.connect(process.env.MONGO_TEST_URL, {
-            poolSize: 1,
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        });
-
-        db = client.db();
-    });
-
-    after(async (): Promise<void> => {
-        try {
-            client.close();
-        }
-        catch (error: any) {
-            //
-        }
-    });
-
     it('1. constructor', async (): Promise<void> => {
         expect((): void => {
             new App(undefined);
@@ -188,14 +161,9 @@ describe('index.ts', (): void => {
             config
         });
 
-        app.add('db', db);
         app.add('connectionName', 'mysql');
 
         expect(app).to.exist;
-
-        expect(app.get('db')).to.exist;
-        expect(app.get('db')).to.be.deep.eq(db);
-        expect(app.get('db').collection('test')).to.be.ok;
 
         expect(app.get('connectionName')).to.exist;
         expect(app.get('connectionName')).to.be.eq('mysql');
